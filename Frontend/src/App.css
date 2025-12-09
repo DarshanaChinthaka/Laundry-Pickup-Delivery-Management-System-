@@ -1,0 +1,44 @@
+/* Material-UI handles all styling. Legacy CSS kept for reference. */
+body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,'Helvetica Neue',Arial}
+.app-root{min-height:100vh;display:flex;flex-direction:column;background:var(--bg)}
+.container{width:96%;max-width:1100px;margin:24px auto;flex:1}
+.card{background:var(--card);padding:18px;border-radius:8px;box-shadow:0 6px 18px rgba(15,23,42,0.06)}
+.card h2{margin-top:0}
+.form-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.items{grid-column:1/-1}
+.item-row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.item-row input{flex:1}
+.btn{background:#eee;border:0;padding:8px 12px;border-radius:6px;cursor:pointer}
+.btn.primary{background:var(--accent);color:#fff}
+.btn.small{padding:6px 8px;font-size:0.9rem}
+.card-header{display:flex;justify-content:space-between;align-items:center}
+.table{width:100%;border-collapse:collapse;margin-top:12px}
+.table th,.table td{padding:8px;border-bottom:1px solid #eef2f6;text-align:left}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+.panel{background:#fafbff;padding:12px;border-radius:6px;text-align:center}
+.home-actions{display:flex;gap:12px;margin-top:12px}
+.link{color:var(--accent);text-decoration:none}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
