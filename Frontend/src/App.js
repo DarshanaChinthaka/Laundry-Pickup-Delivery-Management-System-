@@ -15,6 +15,7 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import logoTopRight from './laundry-logo.png';
+import DriverProfile from './Modules/Driver/DriverProfile';
 
 
 
@@ -126,6 +127,7 @@ function AppContent() {
               <Route path="/orders/:id" element={<OrderDetails />} />
               <Route path="/admin" element={<AdminDashboard />} />
               <Route path="/driver" element={<DriverDashboard />} />
+              <Route path="/driver/profile" element={<DriverProfile />} />
               <Route path="/about" element={<About />} />
               <Route path="/service" element={<Service />} />
               <Route path="/contact" element={<Contact />} />
