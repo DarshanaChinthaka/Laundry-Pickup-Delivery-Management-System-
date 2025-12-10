@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Grid, Box, Typography, Paper, Avatar, LinearProgress, Divider } from '@mui/material';
 import bg from '../background.png';
-import logo from '../laundry logo.PNG';
+import logo from '../laundry-logo.png';
 
 export default function Service() {
   return (

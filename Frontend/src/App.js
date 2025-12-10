@@ -7,12 +7,14 @@ import OrderDetails from './pages/OrderDetails';
 import AdminDashboard from './pages/AdminDashboard';
 import DriverDashboard from './pages/DriverDashboard';
 import CustomerDashboard from './pages/CustomerDashboard';
+import Home from './pages/Home';
+import ChooseRole from './pages/ChooseRole';
 import About from './pages/About';
 import Service from './pages/Service';
 import Contact from './pages/Contact';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import logoTopRight from './laundry logo.PNG';
+import logoTopRight from './laundry-logo.png';
 
 const theme = createTheme({
   palette: {
@@ -84,11 +86,11 @@ function AppContent() {
             </Paper>
           ))}
         </Box>
-        <Box sx={{ display: 'flex', gap: 1.5 }}>
+          <Box sx={{ display: 'flex', gap: 1.5 }}>
           <Button 
             variant="outlined" 
             size="small"
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('/choose-role')}
             sx={{ borderColor: 'primary.main', color: 'primary.main', fontWeight: 600 }}
           >
             Login
@@ -114,8 +116,10 @@ function AppContent() {
             p: { xs: 2, sm: 3, md: 4 }
           }}>
             <Routes>
-              <Route path="/" element={<CustomerDashboard />} />
+              <Route path="/" element={<Home />} />
               <Route path="/book" element={<OrderForm />} />
+              <Route path="/choose-role" element={<ChooseRole />} />
+              <Route path="/customer" element={<CustomerDashboard />} />
               <Route path="/orders" element={<OrderList />} />
               <Route path="/orders/:id" element={<OrderDetails />} />
               <Route path="/admin" element={<AdminDashboard />} />

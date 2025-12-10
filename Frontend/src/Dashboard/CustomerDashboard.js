@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button, Box, Grid, Typography, Paper, Container } from '@mui/material';
-import logo from '../laundry logo.PNG';
+import logo from '../laundry-logo.png';
 import { LocalShipping as LocalShippingIcon, Inventory as InventoryIcon, Notifications as NotificationsIcon, Speed as SpeedIcon } from '@mui/icons-material';
 import bg from '../background.png';
 
