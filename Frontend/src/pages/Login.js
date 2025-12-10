@@ -10,21 +10,24 @@ export default function Login(){
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-
   function handleSubmit(e){
     e.preventDefault();
     // Mock authentication - replace with real API
     // For demo: any credentials succeed
-    if(role === 'admin'){
-      // mark session for demo
+    if (role === 'admin') {
       localStorage.setItem('role', 'admin');
       navigate('/admin');
-    } else if(role === 'customer'){
+    } else if (role === 'customer') {
       localStorage.setItem('role', 'customer');
       navigate('/customer');
+    } else if (role === 'driver') {
+      localStorage.setItem('role', 'driver');
+      navigate('/driver');
+    } else if (role === 'employee') {
+      localStorage.setItem('role', 'employee');
+      navigate('/employee');
     } else {
-      // no role provided - ask user to choose
-      // default to customer
+      // no role provided - default to customer
       localStorage.setItem('role', 'customer');
       navigate('/customer');
     }
