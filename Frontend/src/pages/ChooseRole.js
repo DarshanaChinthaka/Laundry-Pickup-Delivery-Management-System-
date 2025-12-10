@@ -35,6 +35,30 @@ export default function ChooseRole(){
               Admin
             </Button>
           </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Button
+              fullWidth
+              variant="outlined"
+              color="primary"
+              onClick={() => navigate('/login?role=driver')}
+              sx={{ py: 1.5, fontWeight: 700 }}
+            >
+              Driver
+            </Button>
+          </Grid>
+
+          <Grid item xs={12} sm={6}>
+            <Button
+              fullWidth
+              variant="outlined"
+              color="primary"
+              onClick={() => navigate('/login?role=employee')}
+              sx={{ py: 1.5, fontWeight: 700 }}
+            >
+              Employee
+            </Button>
+          </Grid>
         </Grid>
       </Paper>
     </Container>
