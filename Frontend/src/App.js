@@ -15,12 +15,6 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import logoTopRight from './laundry-logo.png';
-import OrderForm from "./pages/OrderForm";
-import OrderList from "./pages/OrderList";
-import OrderDetails from "./pages/OrderDetails";
-import DriverOrders from "./pages/DriverOrders";
-import DriverOrderDetails from "./pages/DriverOrderDetails";
-import DriverProfile from "./pages/DriverProfile";
 
 
 
@@ -137,12 +131,6 @@ function AppContent() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/book" element={<OrderForm />} />
-              <Route path="/orders" element={<OrderList />} />
-              <Route path="/orders/:id" element={<OrderDetails />} />
-              <Route path="/driver/orders/:id" element={<DriverOrderDetails />} />
-              <Route path="/driver/profile" element={<DriverProfile />} />
-              <Route path="/driver/orders" element={<DriverOrders />} />
             </Routes>
           </Box>
         </Container>
