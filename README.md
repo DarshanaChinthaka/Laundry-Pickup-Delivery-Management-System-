@@ -1,8 +1,11 @@
 # 🧺 Laundry Presentation this one
 
-![Last Commit](https://img.shields.io/badge/last%20commit-private-lightgrey)
-![Repo Size](https://img.shields.io/badge/repo%20size-private-lightgrey)
-![Issues](https://img.shields.io/badge/issues-private-lightgrey)
+![Last Commit](https://img.shields.io/github/last-commit/DarshanaChinthaka/Laundry-Pickup-Delivery-Management-System?style=flat-square)
+![Repo Size](https://img.shields.io/github/repo-size/DarshanaChinthaka/Laundry%20Pickup%20Delivery%20Management%20System?style=flat-square)
+![Issues](https://img.shields.io/github/issues/DarshanaChinthaka/Laundry-Pickup-Delivery-Management-System?style=flat-square)
+
+
+## Description
 
 
 A **full-stack application** to manage laundry pickup, delivery, and order tracking, with a **Spring Boot backend** and **React frontend**.
@@ -33,7 +36,7 @@ A **full-stack application** to manage laundry pickup, delivery, and order track
 ### Backend
 
 ```bash
-cd mge-laundry-management-system
+cd laundry-management-system
 ./mvnw spring-boot:run
 ```
 
@@ -43,7 +46,7 @@ cd mge-laundry-management-system
 ### Frontend
 
 ```bash
-cd mge-laundry-frontend
+cd frontend
 npm install
 npm start
 ```
@@ -57,7 +60,7 @@ npm start
 ```
 mge-laundry-management-system/
 ├─ src/                     # Backend source code (Spring Boot)
-├─ mge-laundry-frontend/    # Frontend source code (React)
+├─ frontend/               # Frontend source code (React)
 ├─ pom.xml                  # Maven project file
 ├─ mvnw, mvnw.cmd           # Maven wrapper
 └─ README.md
@@ -70,7 +73,7 @@ mge-laundry-management-system/
 Clone the project:
 
 ```bash
-git clone https://github.com/your-username/mge-laundry-management-system.git
+git clone https://github.com/DarshanaChinthaka/mge-laundry-management-system.git
 ```
 
 ---
