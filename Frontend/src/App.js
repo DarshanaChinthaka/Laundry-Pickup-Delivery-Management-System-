@@ -18,6 +18,7 @@ import logoTopRight from './laundry-logo.png';
 import DriverOrders from "./pages/DriverOrders";
 import DriverOrderDetails from "./pages/DriverOrderDetails";
 import DriverProfile from "./pages/DriverProfile";
+import EmployeesDashboard from './Dashboard/EmployeesDashboard';
 
 
 
@@ -125,6 +126,7 @@ function AppContent() {
               <Route path="/book" element={<OrderForm />} />
               <Route path="/choose-role" element={<ChooseRole />} />
               <Route path="/customer" element={<CustomerDashboard />} />
+              <Route path="/employee" element={<EmployeesDashboard />} />
               <Route path="/orders" element={<OrderList />} />
               <Route path="/orders/:id" element={<OrderDetails />} />
               <Route path="/admin" element={<AdminDashboard />} />
