@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { User, Mail, Phone, MapPin, Calendar, Star, Package, DollarSign, Clock, Edit, Save, X, Truck, Award, TrendingUp } from 'lucide-react';
 
 export default function ManageDriverProfile() {
@@ -50,6 +51,13 @@ export default function ManageDriverProfile() {
           <p className="text-gray-600">View and manage driver information</p>
         </div>
         <div className="flex gap-3">
+          <Link
+            to="/driver"
+            className="flex items-center gap-2 px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+          >
+            <Truck className="w-4 h-4" />
+            <span>Driver Dashboard</span>
+          </Link>
           {!isEditing ? (
             <button
               onClick={() => setIsEditing(true)}
