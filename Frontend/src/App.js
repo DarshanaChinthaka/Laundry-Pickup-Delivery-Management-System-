@@ -24,8 +24,9 @@ import ManageOrders from './Modules/admin/ManageOrders';
 import ManageDrivers from './Modules/admin/ManageDrivers';
 import LaundryServices from './Modules/admin/LaundryServices';
 import ManageVehicles from './Modules/admin/ManageVehicles';
-import VehicleBookingForm from './Modules/admin/VehicleBookingForm';
+import VehicleBookingForm from './Modules/Vehicles/VehicleBookingForm';
 import ManageVehicleBookings from './Modules/admin/ManageVehicleBookings';
+import FooterSection from './components/Footer';
 
 
 
@@ -136,15 +137,8 @@ function AppContent() {
               <Route path="/employee" element={<EmployeesDashboard />} />
               <Route path="/orders" element={<OrderList />} />
               <Route path="/orders/:id" element={<OrderDetails />} />
-              <Route path="/admin" element={<AdminDashboard />} />
-              <Route path="/admin/customers" element={<ManageCustomers />} />
-              <Route path="/admin/orders" element={<ManageOrders />} />
-              <Route path="/admin/drivers" element={<ManageDrivers />} />
-              <Route path="/admin/services" element={<LaundryServices />} />
-              <Route path="/admin/vehicles" element={<ManageVehicles />} />
-              <Route path="/admin/vehicles/book" element={<VehicleBookingForm />} />
-              <Route path="/admin/vehicles/bookings" element={<ManageVehicleBookings />} />
-              <Route path="/driver" element={<DriverDashboard />} />
+              <Route path="/admin/*" element={<AdminDashboard />} />
+              <Route path="/driver/*" element={<DriverDashboard />} />
               <Route path="/about" element={<About />} />
               <Route path="/service" element={<Service />} />
               <Route path="/contact" element={<Contact />} />
@@ -161,20 +155,8 @@ function AppContent() {
         </Container>
       </Box>
 
-      {/* Footer - Centered */}
-      <Box sx={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        p: 2,
-        borderTop: '1px solid rgba(15,23,42,0.08)',
-        bgcolor: 'white',
-        mt: 'auto'
-      }}>
-        <Typography variant="caption" sx={{ color: 'text.secondary' }}>
-          © 2024 LaundryPro. All rights reserved.
-        </Typography>
-      </Box>
+      {/* Footer - central component */}
+      <FooterSection />
     </Box>
   );
 }
@@ -192,4 +174,3 @@ function App() {
 }
 
 export default App;
-
