@@ -1,27 +1,39 @@
 import React from 'react';
-import { Container, Typography, Paper, List, ListItem, ListItemText, Button, Avatar } from '@mui/material';
+import { FaUserTie, FaRoute } from 'react-icons/fa';
 
-export default function ManageDrivers(){
-  const drivers = [
-    { id: 'D-001', name: 'Mike R.', vehicle: 'Van - ABC123' },
-    { id: 'D-002', name: 'Sarah L.', vehicle: 'Bike - BIK456' },
-    { id: 'D-003', name: 'Tom K.', vehicle: 'Van - XYZ789' },
-  ];
-
+const ManageDrivers = () => {
   return (
-    <Container sx={{ py: 4 }}>
-      <Typography variant="h5" sx={{ mb: 2, fontWeight: 800 }}>Manage Drivers</Typography>
-      <Paper sx={{ p: 2 }}>
-        <List>
-          {drivers.map(d => (
-            <ListItem key={d.id} secondaryAction={<Button size="small">Assign</Button>}>
-              <Avatar sx={{ mr: 2 }}>{d.name.split(' ').map(n=>n[0]).join('')}</Avatar>
-              <ListItemText primary={`${d.name} (${d.vehicle})`} secondary={d.id} />
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
-    </Container>
-  );
-}
+    <div className="management-page">
+      <h3>Driver Management</h3>
+      <div className="main-header" style={{ marginBottom: '20px' }}>
+        <p style={{ color: '#555', margin: 0 }}>Oversee driver assignments and daily routes.</p>
+        <button className="action-button">
+          <FaUserTie /> Add New Driver
+        </button>
+      </div>
 
+      <div style={{ padding: '20px', border: '1px solid #eee', borderRadius: '4px' }}>
+        <h4 style={{ color: '#1A237E' }}>Driver Status Summary</h4>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '15px', marginTop: '15px', textAlign: 'center' }}>
+            <div style={{ padding: '15px', backgroundColor: '#e8f5e9', borderRadius: '4px' }}>
+                <p style={{ margin: '0 0 5px 0', fontWeight: 'bold' }}>On Route</p>
+                <strong style={{ fontSize: '1.5rem', color: '#4CAF50' }}>6</strong>
+            </div>
+            <div style={{ padding: '15px', backgroundColor: '#fff3e0', borderRadius: '4px' }}>
+                <p style={{ margin: '0 0 5px 0', fontWeight: 'bold' }}>Available</p>
+                <strong style={{ fontSize: '1.5rem', color: '#FFC107' }}>4</strong>
+            </div>
+            <div style={{ padding: '15px', backgroundColor: '#e3f2fd', borderRadius: '4px' }}>
+                <p style={{ margin: '0 0 5px 0', fontWeight: 'bold' }}>Offline</p>
+                <strong style={{ fontSize: '1.5rem', color: '#1A237E' }}>2</strong>
+            </div>
+        </div>
+        <button className="action-button" style={{ width: '100%', marginTop: '20px', backgroundColor: '#3b5998', color: 'white' }}>
+            <FaRoute /> View Real-time Map
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default ManageDrivers;

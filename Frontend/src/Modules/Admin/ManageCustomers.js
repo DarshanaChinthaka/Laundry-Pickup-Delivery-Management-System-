@@ -1,45 +1,40 @@
 import React from 'react';
-import { Container, Typography, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button } from '@mui/material';
+import { FaUserPlus, FaSearch } from 'react-icons/fa';
 
-export default function ManageCustomers(){
-  const customers = [
-    { id: 'C-001', name: 'Alice Johnson', phone: '+1 555-1010', email: 'alice@example.com' },
-    { id: 'C-002', name: 'Bob Smith', phone: '+1 555-2020', email: 'bob@example.com' },
-    { id: 'C-003', name: 'Carol White', phone: '+1 555-3030', email: 'carol@example.com' },
-  ];
-
+const ManageCustomers = () => {
   return (
-    <Container sx={{ py: 4 }}>
-      <Typography variant="h5" sx={{ mb: 2, fontWeight: 800 }}>Manage Customers</Typography>
-      <Paper sx={{ p: 2 }}>
-        <Button variant="contained" sx={{ mb: 2 }}>Add Customer</Button>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Customer ID</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Phone</TableCell>
-              <TableCell>Email</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {customers.map(c => (
-              <TableRow key={c.id} hover>
-                <TableCell>{c.id}</TableCell>
-                <TableCell>{c.name}</TableCell>
-                <TableCell>{c.phone}</TableCell>
-                <TableCell>{c.email}</TableCell>
-                <TableCell>
-                  <Button size="small">Edit</Button>
-                  <Button size="small" color="error">Delete</Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-    </Container>
-  );
-}
+    <div className="management-page">
+      <h3>Customer Management</h3>
+      <div className="main-header" style={{ marginBottom: '20px' }}>
+        <div style={{ display: 'flex', gap: '10px' }}>
+            <input type="text" placeholder="Search customers..." style={{ padding: '10px', border: '1px solid #ddd', borderRadius: '4px', width: '300px' }} />
+            <button className="action-button" style={{ backgroundColor: '#f0f0f0', color: '#333' }}><FaSearch /></button>
+        </div>
+        <button className="action-button">
+          <FaUserPlus /> Add New Customer
+        </button>
+      </div>
 
+      <div style={{ padding: '20px', border: '1px solid #eee', borderRadius: '4px' }}>
+        <p style={{ color: '#555' }}>List of customers will be displayed here, showing contact info, service history, and last order date.</p>
+        {/* Placeholder for Data Table */}
+        <table style={{ width: '100%', borderCollapse: 'collapse', marginTop: '20px' }}>
+            <thead>
+                <tr style={{ backgroundColor: '#f9f9f9' }}>
+                    <th style={{ padding: '10px', borderBottom: '1px solid #ddd', textAlign: 'left' }}>ID</th>
+                    <th style={{ padding: '10px', borderBottom: '1px solid #ddd', textAlign: 'left' }}>Name</th>
+                    <th style={{ padding: '10px', borderBottom: '1px solid #ddd', textAlign: 'left' }}>Email</th>
+                    <th style={{ padding: '10px', borderBottom: '1px solid #ddd', textAlign: 'left' }}>Status</th>
+                    <th style={{ padding: '10px', borderBottom: '1px solid #ddd', textAlign: 'left' }}>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td colSpan="5" style={{ padding: '40px', textAlign: 'center', color: '#999' }}>Customer Data Table Placeholder</td></tr>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  );
+};
+
+export default ManageCustomers;

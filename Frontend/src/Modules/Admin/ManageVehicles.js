@@ -1,47 +1,37 @@
 import React from 'react';
-import { Container, Typography, Paper, Table, TableHead, TableRow, TableCell, TableBody, Button } from '@mui/material';
+import { FaCarSide, FaPlus } from 'react-icons/fa';
 
-export default function ManageVehicles(){
-  const vehicles = [
-    { id: 'V-001', plate: 'ABC-1234', model: 'Ford Transit', status: 'Active' },
-    { id: 'V-002', plate: 'XYZ-5678', model: 'Toyota Hiace', status: 'Maintenance' },
-    { id: 'V-003', plate: 'LMN-9012', model: 'Suzuki Carry', status: 'Active' },
-  ];
-
+const ManageVehicles = () => {
   return (
-    <Container sx={{ py: 4 }}>
-      <Typography variant="h5" sx={{ mb: 2, fontWeight: 800 }}>Manage Vehicles</Typography>
-      <Paper sx={{ p: 2 }}>
-        <Button variant="contained" sx={{ mb: 2, mr: 2 }} href="/admin/vehicles/book">Add Vehicle Booking</Button>
-        <Button variant="outlined" sx={{ mb: 2 }} href="/admin/vehicles/bookings">Manage Bookings</Button>
+    <div className="management-page">
+      <h3>Vehicle Management</h3>
+      <div className="main-header" style={{ marginBottom: '20px' }}>
+        <p style={{ color: '#555', margin: 0 }}>Maintain the fleet inventory and maintenance logs.</p>
+        <button className="action-button">
+          <FaPlus /> Add New Vehicle
+        </button>
+      </div>
 
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Vehicle ID</TableCell>
-              <TableCell>Plate</TableCell>
-              <TableCell>Model</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {vehicles.map(v => (
-              <TableRow key={v.id} hover>
-                <TableCell>{v.id}</TableCell>
-                <TableCell>{v.plate}</TableCell>
-                <TableCell>{v.model}</TableCell>
-                <TableCell>{v.status}</TableCell>
-                <TableCell>
-                  <Button size="small">Edit</Button>
-                  <Button size="small" color="error">Delete</Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-    </Container>
+      <div style={{ padding: '20px', border: '1px solid #eee', borderRadius: '4px' }}>
+        <h4 style={{ color: '#1A237E' }}>Fleet Overview</h4>
+        <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '15px', textAlign: 'center' }}>
+            <div style={{ padding: '15px', backgroundColor: '#e3f2fd', borderRadius: '4px' }}>
+                <p style={{ margin: '0 0 5px 0', fontWeight: 'bold' }}>Total Vehicles</p>
+                <strong style={{ fontSize: '1.5rem', color: '#1A237E' }}>15</strong>
+            </div>
+            <div style={{ padding: '15px', backgroundColor: '#e8f5e9', borderRadius: '4px' }}>
+                <p style={{ margin: '0 0 5px 0', fontWeight: 'bold' }}>Available</p>
+                <strong style={{ fontSize: '1.5rem', color: '#4CAF50' }}>10</strong>
+            </div>
+            <div style={{ padding: '15px', backgroundColor: '#fce4ec', borderRadius: '4px' }}>
+                <p style={{ margin: '0 0 5px 0', fontWeight: 'bold' }}>In Maintenance</p>
+                <strong style={{ fontSize: '1.5rem', color: '#E91E63' }}>2</strong>
+            </div>
+        </div>
+        <p style={{ marginTop: '30px', color: '#999', textAlign: 'center' }}>Vehicle Listing Table Placeholder (License Plate, Status, Last Service Date)</p>
+      </div>
+    </div>
   );
-}
+};
 
+export default ManageVehicles;

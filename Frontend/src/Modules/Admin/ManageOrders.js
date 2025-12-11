@@ -1,44 +1,33 @@
 import React from 'react';
-import { Container, Typography, Paper, Table, TableHead, TableRow, TableCell, TableBody, Chip, Button } from '@mui/material';
+import { FaFilter, FaRedoAlt } from 'react-icons/fa';
 
-export default function ManageOrders(){
-  const orders = [
-    { id: 'ORD-1024', customer: 'Alice Johnson', status: 'Pickup Scheduled', amount: '$32' },
-    { id: 'ORD-1025', customer: 'Bob Smith', status: 'In Process', amount: '$48' },
-    { id: 'ORD-1026', customer: 'Carol White', status: 'Out for Delivery', amount: '$25' },
-  ];
-
+const ManageOrders = () => {
   return (
-    <Container sx={{ py: 4 }}>
-      <Typography variant="h5" sx={{ mb: 2, fontWeight: 800 }}>Manage Orders</Typography>
-      <Paper sx={{ p: 2 }}>
-        <Table>
-          <TableHead>
-            <TableRow>
-              <TableCell>Order ID</TableCell>
-              <TableCell>Customer</TableCell>
-              <TableCell>Status</TableCell>
-              <TableCell>Amount</TableCell>
-              <TableCell>Actions</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {orders.map(o => (
-              <TableRow key={o.id} hover>
-                <TableCell>{o.id}</TableCell>
-                <TableCell>{o.customer}</TableCell>
-                <TableCell><Chip label={o.status} color="info" size="small"/></TableCell>
-                <TableCell>{o.amount}</TableCell>
-                <TableCell>
-                  <Button size="small">View</Button>
-                  <Button size="small">Assign</Button>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </Paper>
-    </Container>
-  );
-}
+    <div className="management-page">
+      <h3>Order Management</h3>
+      <div className="main-header" style={{ marginBottom: '20px' }}>
+        <p style={{ color: '#555', margin: 0 }}>Track and update the status of all laundry orders.</p>
+        <div style={{ display: 'flex', gap: '10px' }}>
+            <button className="action-button" style={{ backgroundColor: '#f0f0f0', color: '#333' }}>
+              <FaFilter /> Filter
+            </button>
+            <button className="action-button">
+              <FaRedoAlt /> Refresh
+            </button>
+        </div>
+      </div>
 
+      <div style={{ padding: '20px', border: '1px solid #eee', borderRadius: '4px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-around', textAlign: 'center', marginBottom: '30px' }}>
+            <div style={{ borderBottom: '3px solid #FFC107', padding: '10px 20px', cursor: 'pointer' }}>Pending Pickup (15)</div>
+            <div style={{ borderBottom: '3px solid #ddd', padding: '10px 20px', cursor: 'pointer' }}>In Progress (45)</div>
+            <div style={{ borderBottom: '3px solid #ddd', padding: '10px 20px', cursor: 'pointer' }}>Ready for Delivery (20)</div>
+            <div style={{ borderBottom: '3px solid #ddd', padding: '10px 20px', cursor: 'pointer' }}>Completed (250)</div>
+        </div>
+        <p style={{ color: '#999', textAlign: 'center' }}>Order Listing Table Placeholder (Order ID, Customer, Status, Action)</p>
+      </div>
+    </div>
+  );
+};
+
+export default ManageOrders;
