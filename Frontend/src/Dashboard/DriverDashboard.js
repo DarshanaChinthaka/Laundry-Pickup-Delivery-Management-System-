@@ -1,161 +1,233 @@
-﻿import React, { useState } from 'react';
-import { Truck, Plus, Search, Filter, MoreVertical, MapPin, Star, Phone, Mail, Clock, DollarSign, Package } from 'lucide-react';
+﻿import React, { useState, useEffect } from 'react';
+import { IoMdSpeedometer } from 'react-icons/io';
+import { FaClipboardList, FaMoneyBillWave, FaRoute, FaUser, FaSignOutAlt, FaTruck } from 'react-icons/fa';
+// Import the specific view components
+import DriverTasksView from '../Modules/Driver/DriverTasks';
+import DriverEarningsView from '../Modules/Driver/DriverEarnings';
+import DriverProfileView from '../Modules/Driver/DriverProfile';
 
-export default function ManageDriversDashboard() {
-  const [searchTerm, setSearchTerm] = useState('');
+// --- I. GLOBAL CSS STYLES ---
+const injectLinenTechDriverStyles = () => {
+    const styleId = 'lt-driver-portal-styles';
+    if (document.getElementById(styleId)) return;
 
-  const driverStats = [
-    { label: 'Total Drivers', value: '24', color: 'bg-blue-500', icon: Truck },
-    { label: 'Active Now', value: '18', color: 'bg-green-500', icon: Clock },
-    { label: 'On Break', value: '4', color: 'bg-yellow-500', icon: Clock },
-    { label: 'Offline', value: '2', color: 'bg-gray-500', icon: Clock },
-  ];
+    const style = document.createElement('style');
+    style.id = styleId;
+    style.innerHTML = `
+        :root {
+            --lt-primary-blue: #1A237E; /* Deep Blue */
+            --lt-accent-yellow: #FFC107; /* Bright Yellow/Gold accent */
+            --lt-success-green: #4CAF50;
+            --lt-info-cyan: #00BCD4;
+            --lt-light-bg: #f8f9fa;
+            --lt-card-bg: #ffffff;
+            --lt-text-dark: #333;
+        }
 
-  const drivers = [
-    { id: 1, name: 'Mike Johnson', phone: '+1 234-567-8901', email: 'mike@example.com', status: 'Active', rating: 4.8, trips: 145, earnings: '$3,240', location: 'Downtown', vehicle: 'VAN-001' },
-    { id: 2, name: 'Anna Lee', phone: '+1 234-567-8902', email: 'anna@example.com', status: 'Active', rating: 4.9, trips: 132, earnings: '$3,080', location: 'Westside', vehicle: 'VAN-002' },
-    { id: 3, name: 'David Chen', phone: '+1 234-567-8903', email: 'david@example.com', status: 'On Break', rating: 4.7, trips: 128, earnings: '$2,850', location: 'Central Hub', vehicle: 'VAN-003' },
-    { id: 4, name: 'Sarah Wilson', phone: '+1 234-567-8904', email: 'sarah@example.com', status: 'Active', rating: 4.8, trips: 118, earnings: '$2,640', location: 'Eastside', vehicle: 'VAN-004' },
-    { id: 5, name: 'Tom Brown', phone: '+1 234-567-8905', email: 'tom@example.com', status: 'Offline', rating: 4.6, trips: 95, earnings: '$2,110', location: 'N/A', vehicle: 'VAN-005' },
-  ];
+        .lt-driver-layout {
+            display: flex;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: var(--lt-light-bg);
+        }
 
-  const statusColors = {
-    'Active': 'bg-green-100 text-green-800',
-    'On Break': 'bg-yellow-100 text-yellow-800',
-    'Offline': 'bg-gray-100 text-gray-800',
-  };
+        /* --- SIDEBAR --- */
+        .lt-sidebar {
+            width: 250px;
+            background-color: var(--lt-primary-blue);
+            color: var(--lt-card-bg);
+            padding: 20px 0;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        .lt-logo {
+            padding: 0 20px 20px 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--lt-accent-yellow);
+            border-bottom: 1px solid #2c388e;
+            margin-bottom: 20px;
+        }
+        .lt-nav-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .lt-nav-item:hover, .lt-nav-item.active {
+            background-color: #2c388e;
+            border-left: 5px solid var(--lt-accent-yellow);
+            padding-left: 15px;
+        }
+        .lt-nav-item svg {
+            margin-right: 10px;
+            font-size: 1.1rem;
+        }
 
-  return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-800 mb-2">Manage Drivers</h1>
-        <p className="text-gray-600">Monitor and manage your delivery drivers</p>
-      </div>
+        /* --- MAIN CONTENT STYLES --- */
+        .lt-main-content {
+            flex-grow: 1;
+            padding: 30px;
+            overflow-y: auto;
+        }
+        .lt-main-header {
+            font-size: 2rem;
+            color: var(--lt-primary-blue);
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+        .lt-card {
+            background-color: var(--lt-card-bg);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            margin-bottom: 20px;
+        }
+        .lt-alert {
+            padding: 15px;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        .lt-alert-info { background-color: #e3f2fd; color: #1e88e5; }
+        .lt-alert-warning { background-color: #fff8e1; color: #ff9800; }
+        .lt-alert svg { margin-right: 10px; }
 
-      {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
-        {driverStats.map((stat, idx) => (
-          <div key={idx} className="bg-white rounded-xl p-6 shadow-sm border">
-            <div className="flex items-center justify-between mb-4">
-              <div className={`${stat.color} p-3 rounded-lg`}>
-                <stat.icon className="w-6 h-6 text-white" />
-              </div>
-            </div>
-            <div className="text-3xl font-bold text-gray-800 mb-1">{stat.value}</div>
-            <div className="text-sm text-gray-600">{stat.label}</div>
-          </div>
-        ))}
-      </div>
+        /* Styles for Summary Card (used in Dashboard/TasksView) */
+        .lt-summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-bottom: 40px;
+        }
+        .lt-summary-card {
+            background-color: var(--lt-card-bg);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+        }
+        .lt-card-icon {
+            font-size: 2.5rem;
+            padding: 15px;
+            border-radius: 50%;
+            margin-right: 15px;
+            color: white;
+        }
+        .lt-card-content h3 {
+            margin: 0 0 5px 0;
+            font-size: 1.5rem;
+            color: var(--lt-primary-blue);
+        }
+        .lt-card-content p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #666;
+            font-weight: 500;
+        }
+        .icon-yellow { background-color: var(--lt-accent-yellow); }
+        .icon-cyan { background-color: var(--lt-info-cyan); }
+        .icon-green { background-color: var(--lt-success-green); }
+    `;
+    document.head.appendChild(style);
+};
 
-      {/* Filters and Actions */}
-      <div className="bg-white rounded-xl shadow-sm border p-4 mb-6">
-        <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
-          <div className="flex-1 w-full md:w-auto">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-              <input
-                type="text"
-                placeholder="Search drivers..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 pr-4 py-2 border rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
-              />
-            </div>
-          </div>
-          <div className="flex gap-3 w-full md:w-auto">
-            <button className="flex items-center gap-2 px-4 py-2 border rounded-lg hover:bg-gray-50">
-              <Filter className="w-4 h-4" />
-              <span>Filter</span>
-            </button>
-            <button className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
-              <Plus className="w-4 h-4" />
-              <span>Add Driver</span>
-            </button>
-          </div>
+// --- II. NAVIGATION & LAYOUT COMPONENTS ---
+
+const Sidebar = ({ activeTab, setActiveTab }) => (
+    <div className="lt-sidebar">
+        <div className="lt-logo">LinenTech Driver</div>
+        <nav style={{ flexGrow: 1 }}>
+            <a
+                className={`lt-nav-item ${activeTab === 'Dashboard' ? 'active' : ''}`}
+                onClick={() => setActiveTab('Dashboard')}
+            >
+                <IoMdSpeedometer /> Dashboard
+            </a>
+            <a
+                className={`lt-nav-item ${activeTab === 'Tasks' ? 'active' : ''}`}
+                onClick={() => setActiveTab('Tasks')}
+            >
+                <FaClipboardList /> Daily Tasks
+            </a>
+            <a
+                className={`lt-nav-item ${activeTab === 'Route' ? 'active' : ''}`}
+                onClick={() => setActiveTab('Route')}
+            >
+                <FaRoute /> My Route
+            </a>
+            <a
+                className={`lt-nav-item ${activeTab === 'Earnings' ? 'active' : ''}`}
+                onClick={() => setActiveTab('Earnings')}
+            >
+                <FaMoneyBillWave /> Earnings
+            </a>
+            <a
+                className={`lt-nav-item ${activeTab === 'Profile' ? 'active' : ''}`}
+                onClick={() => setActiveTab('Profile')}
+            >
+                <FaUser /> Profile
+            </a>
+        </nav>
+        <div style={{ padding: '20px 0', borderTop: '1px solid #2c388e' }}>
+            <a className="lt-nav-item" href="#logout">
+                <FaSignOutAlt /> Log Out
+            </a>
         </div>
-      </div>
-
-      {/* Drivers List */}
-      <div className="bg-white rounded-xl shadow-sm border overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead className="bg-gray-50 border-b">
-              <tr>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase">Driver</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase">Contact</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase">Rating</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase">Trips</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase">Earnings</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase">Location</th>
-                <th className="px-6 py-4 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y">
-              {drivers.map((driver) => (
-                <tr key={driver.id} className="hover:bg-gray-50">
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-3">
-                      <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold">
-                        {driver.name.split(' ').map(n => n[0]).join('')}
-                      </div>
-                      <div>
-                        <div className="font-medium text-gray-900">{driver.name}</div>
-                        <div className="text-sm text-gray-500">{driver.vehicle}</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="text-sm text-gray-900 flex items-center gap-1">
-                      <Phone className="w-4 h-4 text-gray-400" />
-                      {driver.phone}
-                    </div>
-                    <div className="text-sm text-gray-500 flex items-center gap-1 mt-1">
-                      <Mail className="w-4 h-4 text-gray-400" />
-                      {driver.email}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <span className={`px-3 py-1 text-xs font-medium rounded-full ${statusColors[driver.status]}`}>
-                      {driver.status}
-                    </span>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-1">
-                      <Star className="w-4 h-4 text-yellow-400 fill-yellow-400" />
-                      <span className="font-medium text-gray-900">{driver.rating}</span>
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-1 text-gray-900">
-                      <Package className="w-4 h-4 text-gray-400" />
-                      {driver.trips}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-1 font-medium text-gray-900">
-                      <DollarSign className="w-4 h-4 text-green-500" />
-                      {driver.earnings}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <div className="flex items-center gap-1 text-sm text-gray-600">
-                      <MapPin className="w-4 h-4 text-gray-400" />
-                      {driver.location}
-                    </div>
-                  </td>
-                  <td className="px-6 py-4">
-                    <button className="p-2 hover:bg-gray-100 rounded-lg">
-                      <MoreVertical className="w-5 h-5 text-gray-400" />
-                    </button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </div>
     </div>
-  );
-}
+);
+
+// --- III. MAIN DRIVER DASHBOARD COMPONENT ---
+
+const DriverDashboard = () => {
+    // State to manage which view is currently active, simulating routing
+    const [activeTab, setActiveTab] = useState('Tasks');
+
+    useEffect(() => {
+        injectLinenTechDriverStyles();
+    }, []);
+
+    const renderContent = () => {
+        switch (activeTab) {
+            case 'Dashboard':
+            case 'Tasks':
+                return <DriverTasksView />; // Combines tasks and summary cards
+            case 'Route':
+                return (
+                    <div className="lt-card" style={{ minHeight: '70vh', textAlign: 'center' }}>
+                        <FaRoute style={{ fontSize: '4rem', color: '#9e9e9e', marginBottom: '20px' }} />
+                        <h3 style={{ color: 'var(--lt-primary-blue)' }}>Live Route & GPS Tracking</h3>
+                        <p style={{ color: '#777' }}> This area integrates the live map view showing optimized routes and traffic updates.</p>
+                        <div className="lt-alert lt-alert-info">
+                            <FaTruck /> Route A-12 is currently active. Next stop: 1.5 miles.
+                        </div>
+                    </div>
+                );
+            case 'Earnings':
+                return <DriverEarningsView />;
+            case 'Profile':
+                return <DriverProfileView />;
+            default:
+                return <div>Select a navigation item from the sidebar.</div>;
+        }
+    };
+
+    return (
+        <div className="lt-driver-layout">
+            <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} />
+            <div className="lt-main-content">
+                <h1 className="lt-main-header">{activeTab}</h1>
+                {renderContent()}
+            </div>
+        </div>
+    );
+};
+
+export default DriverDashboard;
