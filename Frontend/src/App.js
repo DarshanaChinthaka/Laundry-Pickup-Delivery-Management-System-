@@ -1,31 +1,31 @@
 import React, { useState } from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
 import { ThemeProvider, createTheme, CssBaseline, Box, AppBar, Toolbar, Typography, Container, Paper, useMediaQuery, Button } from '@mui/material';
-import OrderForm from './pages/OrderForm';
+import OrderForm from './Forms/OrderForm';
 import OrderList from './pages/OrderList';
 import OrderDetails from './pages/OrderDetails';
-import AdminDashboard from './pages/AdminDashboard';
-import DriverDashboard from './pages/DriverDashboard';
-import CustomerDashboard from './pages/CustomerDashboard';
+import AdminDashboard from './Dashboard/AdminDashboard';
+import DriverDashboard from './Dashboard/DriverDashboard';
+import CustomerDashboard from './Dashboard/CustomerDashboard';
 import Home from './pages/Home';
 import ChooseRole from './pages/ChooseRole';
 import About from './pages/About';
 import Service from './pages/Service';
 import Contact from './pages/Contact';
-import Login from './pages/Login';
-import SignUp from './pages/SignUp';
+import Login from './Forms/Login';
+import SignUp from './Forms/SignUp';
 import logoTopRight from './laundry-logo.png';
-import DriverOrders from "./pages/DriverOrders";
-import DriverOrderDetails from "./pages/DriverOrderDetails";
-import DriverProfile from "./pages/DriverProfile";
+import DriverOrders from "./Modules/Driver/DriverOrders";
+import DriverOrderDetails from "./pages/OrderDetails";
+import DriverProfile from "./Modules/Driver/DriverProfile";
 import EmployeesDashboard from './Dashboard/EmployeesDashboard';
-import ManageCustomers from './pages/admin/ManageCustomers';
-import ManageOrders from './pages/admin/ManageOrders';
-import ManageDrivers from './pages/admin/ManageDrivers';
-import LaundryServices from './pages/admin/LaundryServices';
-import ManageVehicles from './pages/admin/ManageVehicles';
-import VehicleBookingForm from './pages/admin/VehicleBookingForm';
-import ManageVehicleBookings from './pages/admin/ManageVehicleBookings';
+import ManageCustomers from './Modules/admin/ManageCustomers';
+import ManageOrders from './Modules/admin/ManageOrders';
+import ManageDrivers from './Modules/admin/ManageDrivers';
+import LaundryServices from './Modules/admin/LaundryServices';
+import ManageVehicles from './Modules/admin/ManageVehicles';
+import VehicleBookingForm from './Modules/admin/VehicleBookingForm';
+import ManageVehicleBookings from './Modules/admin/ManageVehicleBookings';
 
 
 
