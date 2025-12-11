@@ -23,6 +23,9 @@ import ManageCustomers from './pages/admin/ManageCustomers';
 import ManageOrders from './pages/admin/ManageOrders';
 import ManageDrivers from './pages/admin/ManageDrivers';
 import LaundryServices from './pages/admin/LaundryServices';
+import ManageVehicles from './pages/admin/ManageVehicles';
+import VehicleBookingForm from './pages/admin/VehicleBookingForm';
+import ManageVehicleBookings from './pages/admin/ManageVehicleBookings';
 
 
 
@@ -138,6 +141,9 @@ function AppContent() {
               <Route path="/admin/orders" element={<ManageOrders />} />
               <Route path="/admin/drivers" element={<ManageDrivers />} />
               <Route path="/admin/services" element={<LaundryServices />} />
+              <Route path="/admin/vehicles" element={<ManageVehicles />} />
+              <Route path="/admin/vehicles/book" element={<VehicleBookingForm />} />
+              <Route path="/admin/vehicles/bookings" element={<ManageVehicleBookings />} />
               <Route path="/driver" element={<DriverDashboard />} />
               <Route path="/about" element={<About />} />
               <Route path="/service" element={<Service />} />
