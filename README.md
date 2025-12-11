@@ -1,8 +1,9 @@
-# 🧺 Laundry Presentation this one
+# 🧺 Laundry Pickup Delivery Management System
 
-![Last Commit](https://img.shields.io/github/last-commit/DarshanaChinthaka/Laundry-Pickup-Delivery-Management-System?style=flat-square)
-![Repo Size](https://img.shields.io/github/repo-size/DarshanaChinthaka/Laundry%20Pickup%20Delivery%20Management%20System?style=flat-square)
-![Issues](https://img.shields.io/github/issues/DarshanaChinthaka/Laundry-Pickup-Delivery-Management-System?style=flat-square)
+
+![Last Commit](https://img.shields.io/github/last-commit/DarshanaChinthaka/Laundry-Pickup-Delivery-Management-System-?style=flat-square)
+![Repo Size](https://img.shields.io/github/repo-size/DarshanaChinthaka/Laundry-Pickup-Delivery-Management-System-?style=flat-square)
+![Issues](https://img.shields.io/github/issues/DarshanaChinthaka/Laundry-Pickup-Delivery-Management-System-?style=flat-square)
 
 
 ## Description
@@ -73,7 +74,7 @@ mge-laundry-management-system/
 Clone the project:
 
 ```bash
-git clone https://github.com/DarshanaChinthaka/mge-laundry-management-system.git
+git clone https://github.com/DarshanaChinthaka/Laundry-Pickup-Delivery-Management-System-.git
 ```
 
 ---

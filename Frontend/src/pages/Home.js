@@ -1,299 +1,164 @@
 import React from 'react';
-import { Container, Box, Typography, Button, Grid, Paper } from '@mui/material';
+import { Container, Box, Typography, Button, Grid, Paper, Card, CardContent, Avatar, Stack } from '@mui/material';
+import { LocalLaundryService, DeliveryDining, Favorite, Timer, ContactSupport, RoomService } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 export default function Home() {
   const navigate = useNavigate();
 
-  const styles = {
-    heroSection: {
-      background: 'linear-gradient(135deg, #1e3a5f 0%, #2c5aa0 50%, #123a6b 100%)',
-      color: '#fff',
-      minHeight: '90vh',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      position: 'relative',
-      overflow: 'hidden',
-      paddingTop: 80,
-    },
-    heroContent: {
-      maxWidth: 1200,
-      margin: '0 auto',
-      width: '100%',
-      paddingX: 4,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      gap: 4,
-      flexWrap: 'wrap',
-    },
-    leftContent: {
-      flex: 1,
-      minWidth: 300,
-      zIndex: 2,
-    },
-    rightImage: {
-      flex: 1,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      zIndex: 1,
-    },
-    heroCircle: {
-      width: 320,
-      height: 320,
-      borderRadius: '50%',
-      border: '12px solid white',
-      overflow: 'hidden',
-      boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      backgroundColor: '#f0f0f0',
-    },
-    heroImg: {
-      width: '100%',
-      height: '100%',
-      objectFit: 'cover',
-    },
-    preTitle: {
-      fontSize: 16,
-      fontWeight: 600,
-      color: '#8ad03a',
-      marginBottom: 12,
-      letterSpacing: 1,
-    },
-    mainTitle: {
-      fontSize: 56,
-      fontWeight: 800,
-      lineHeight: 1.1,
-      marginBottom: 20,
-      color: '#fff',
-    },
-    subtitle: {
-      fontSize: 18,
-      lineHeight: 1.6,
-      marginBottom: 30,
-      color: 'rgba(255,255,255,0.9)',
-    },
-    ctaButtons: {
-      display: 'flex',
-      gap: 12,
-      flexWrap: 'wrap',
-    },
-    btnPrimary: {
-      backgroundColor: '#8ad03a',
-      color: '#071f0b',
-      padding: '14px 32px',
-      borderRadius: 999,
-      fontSize: 16,
-      fontWeight: 700,
-      border: 'none',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      '&:hover': {
-        backgroundColor: '#7ab42e',
-        transform: 'translateY(-2px)',
-        boxShadow: '0 10px 30px rgba(138,208,58,0.3)',
-      },
-    },
-    btnSecondary: {
-      backgroundColor: 'transparent',
-      color: '#fff',
-      padding: '14px 32px',
-      borderRadius: 999,
-      fontSize: 16,
-      fontWeight: 700,
-      border: '2px solid #fff',
-      cursor: 'pointer',
-      transition: 'all 0.3s ease',
-      '&:hover': {
-        backgroundColor: 'rgba(255,255,255,0.1)',
-        transform: 'translateY(-2px)',
-      },
-    },
-    decorCircle: {
-      position: 'absolute',
-      borderRadius: '50%',
-      backgroundColor: '#8ad03a',
-      opacity: 0.1,
-    },
-    accentRight: {
-      width: 300,
-      height: 300,
-      right: -100,
-      top: 50,
-      borderRadius: '50%',
-      background: 'linear-gradient(135deg, #8ad03a 0%, transparent 70%)',
-      opacity: 0.15,
-    },
-    accentLeft: {
-      width: 400,
-      height: 400,
-      left: -150,
-      bottom: -50,
-      borderRadius: '50%',
-      background: 'linear-gradient(135deg, #8ad03a 0%, transparent 70%)',
-      opacity: 0.1,
-    },
-  };
-
-  const navButtons = [
-    { label: 'Home', href: '#home' },
-    { label: 'About', href: '#about' },
-    { label: 'Service', href: '#service' },
-    { label: 'Contact', href: '#contact' },
-  ];
-
   return (
-    <Box sx={styles.heroSection}>
-      {/* Decorative circles */}
-      <Box sx={{ ...styles.decorCircle, ...styles.accentRight }} />
-      <Box sx={{ ...styles.decorCircle, ...styles.accentLeft }} />
+    <Box sx={{ bgcolor: 'background.default', minHeight: '100vh', pb: 8 }}>
+      {/* Hero */}
+      <Box sx={{
+        background: 'linear-gradient(135deg, #0f172a 0%, #1e3a5f 50%, #123a6b 100%)',
+        color: '#fff',
+        pt: { xs: 10, md: 12 },
+        pb: { xs: 6, md: 8 }
+      }}>
+        <Container maxWidth="lg">
+          <Grid container spacing={4} alignItems="center">
+            <Grid item xs={12} md={7}>
+              <Typography variant="overline" sx={{ color: 'success.light', fontWeight: 700 }}>Laundry Pickup & Delivery</Typography>
+              <Typography variant="h2" sx={{ fontWeight: 900, mt: 2, lineHeight: 1.05 }}>
+                Laundry Pickup Delivery Management System
+              </Typography>
+              <Typography variant="h6" sx={{ mt: 2, color: 'rgba(255,255,255,0.85)' }}>
+                Fast, reliable, and convenient laundry service — scheduled pickup, professional care, and doorstep delivery.
+              </Typography>
 
-      {/* Top Navigation */}
-      <Box
-        sx={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          right: 0,
-          backgroundColor: 'rgba(30,58,95,0.95)',
-          backdropFilter: 'blur(8px)',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          padding: '16px 40px',
-          zIndex: 10,
-          borderBottom: '1px solid rgba(255,255,255,0.05)',
-        }}
-      >
-        {/* Logo */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Typography
-            variant="h6"
-            sx={{
-              fontWeight: 800,
-              fontSize: 20,
-              color: '#fff',
-              letterSpacing: -0.5,
-            }}
-          >
-            Giggling
-            <Typography
-              component="span"
-              sx={{
-                fontWeight: 700,
-                color: '#8ad03a',
-                marginLeft: 1,
-              }}
-            >
-              Laundry
-            </Typography>
-          </Typography>
-        </Box>
+              <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 4 }}>
+                <Button variant="contained" size="large" onClick={() => navigate('/book')} sx={{ bgcolor: 'success.main', px: 4, py: 1.5 }}>Book Now</Button>
+                <Button variant="outlined" size="large" onClick={() => navigate('/contact')} sx={{ color: 'white', borderColor: 'rgba(255,255,255,0.12)' }}>Contact Us</Button>
+              </Stack>
 
-        {/* Navigation links */}
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 4, flex: 1, justifyContent: 'center' }}>
-          {navButtons.map((btn) => (
-            <Typography
-              key={btn.label}
-              component="a"
-              href={btn.href}
-              sx={{
-                color: btn.label === 'Home' ? '#8ad03a' : '#fff',
-                fontSize: 14,
-                fontWeight: 600,
-                cursor: 'pointer',
-                transition: 'color 0.3s ease',
-                '&:hover': {
-                  color: '#8ad03a',
-                },
-              }}
-            >
-              {btn.label}
-            </Typography>
-          ))}
-        </Box>
+              <Box sx={{ display: 'flex', gap: 3, mt: 6, flexWrap: 'wrap' }}>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                  <Avatar sx={{ bgcolor: 'success.main' }}><LocalLaundryService /></Avatar>
+                  <Box>
+                    <Typography sx={{ fontWeight: 700 }}>Wash & Fold</Typography>
+                    <Typography sx={{ fontSize: 12, color: 'rgba(255,255,255,0.8)' }}>Quality cleaning</Typography>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                  <Avatar sx={{ bgcolor: 'primary.light' }}><DeliveryDining /></Avatar>
+                  <Box>
+                    <Typography sx={{ fontWeight: 700 }}>Pickup & Delivery</Typography>
+                    <Typography sx={{ fontSize: 12, color: 'rgba(255,255,255,0.8)' }}>At your convenience</Typography>
+                  </Box>
+                </Box>
+                <Box sx={{ display: 'flex', alignItems: 'center', gap: 1.5 }}>
+                  <Avatar sx={{ bgcolor: 'warning.light' }}><Favorite /></Avatar>
+                  <Box>
+                    <Typography sx={{ fontWeight: 700 }}>Eco Friendly</Typography>
+                    <Typography sx={{ fontSize: 12, color: 'rgba(255,255,255,0.8)' }}>Gentle on fabrics</Typography>
+                  </Box>
+                </Box>
+              </Box>
+            </Grid>
 
-        {/* Hamburger menu (mobile) */}
-        <Typography sx={{ color: '#fff', fontSize: 24, cursor: 'pointer', display: { xs: 'block', md: 'none' } }}>
-          ☰
-        </Typography>
+            <Grid item xs={12} md={5}>
+              <Box sx={{ display: 'flex', justifyContent: { xs: 'center', md: 'flex-end' } }}>
+                <Box sx={{ width: { xs: 320, sm: 360 }, height: { xs: 320, sm: 360 }, borderRadius: '50%', overflow: 'hidden', border: '8px solid rgba(255,255,255,0.06)', boxShadow: 6 }}>
+                  <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d0b6?w=800&q=80&auto=format&fit=crop&s=1c3c3f" alt="Laundry service" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                </Box>
+              </Box>
+            </Grid>
+          </Grid>
+        </Container>
       </Box>
 
-      {/* Main Hero Content */}
-      <Container maxWidth="lg" sx={styles.heroContent}>
-        {/* Left side - Text content */}
-        <Box sx={styles.leftContent}>
-          <Typography sx={styles.preTitle}>Laundry Presentation</Typography>
-          <Typography sx={styles.mainTitle}>
-            Laundry That<br />
-            Makes Your Life<br />
-            Easier
-          </Typography>
-          <Typography sx={styles.subtitle}>
-            Experience the convenience of professional laundry pickup and delivery right at your doorstep. We handle the washing so you can focus on what matters.
-          </Typography>
+      {/* Features */}
+      <Container maxWidth="lg" sx={{ mt: -6, position: 'relative' }}>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={4}>
+            <Card sx={{ p: 2, borderRadius: 3, boxShadow: 3 }}>
+              <CardContent>
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <Avatar sx={{ bgcolor: 'primary.main' }}><Timer /></Avatar>
+                  <Box>
+                    <Typography variant="h6" sx={{ fontWeight: 800 }}>On-time Pickup</Typography>
+                    <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>Schedule a time that works for you.</Typography>
+                  </Box>
+                </Stack>
+              </CardContent>
+            </Card>
+          </Grid>
 
-          {/* CTA Buttons */}
-          <Box sx={styles.ctaButtons}>
-            <Button
-              onClick={() => navigate('/book')}
-              sx={{
-                ...styles.btnPrimary,
-                textTransform: 'none',
-                '&:hover': {
-                  backgroundColor: '#7ab42e',
-                  transform: 'translateY(-2px)',
-                  boxShadow: '0 10px 30px rgba(138,208,58,0.3)',
-                },
-              }}
-            >
-              Book Now
-            </Button>
-            <Button
-              onClick={() => navigate('/contact')}
-              sx={{
-                ...styles.btnSecondary,
-                textTransform: 'none',
-                '&:hover': {
-                  backgroundColor: 'rgba(255,255,255,0.1)',
-                  transform: 'translateY(-2px)',
-                },
-              }}
-            >
-              Contact Now
-            </Button>
-          </Box>
+          <Grid item xs={12} md={4}>
+            <Card sx={{ p: 2, borderRadius: 3, boxShadow: 3 }}>
+              <CardContent>
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <Avatar sx={{ bgcolor: 'success.main' }}><RoomService /></Avatar>
+                  <Box>
+                    <Typography variant="h6" sx={{ fontWeight: 800 }}>Professional Care</Typography>
+                    <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>Garment-by-garment attention and finishing.</Typography>
+                  </Box>
+                </Stack>
+              </CardContent>
+            </Card>
+          </Grid>
+
+          <Grid item xs={12} md={4}>
+            <Card sx={{ p: 2, borderRadius: 3, boxShadow: 3 }}>
+              <CardContent>
+                <Stack direction="row" spacing={2} alignItems="center">
+                  <Avatar sx={{ bgcolor: 'warning.main' }}><ContactSupport /></Avatar>
+                  <Box>
+                    <Typography variant="h6" sx={{ fontWeight: 800 }}>Easy Support</Typography>
+                    <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>Chat or call our friendly support team.</Typography>
+                  </Box>
+                </Stack>
+              </CardContent>
+            </Card>
+          </Grid>
+        </Grid>
+
+        {/* How it works */}
+        <Box sx={{ mt: 6 }}>
+          <Typography variant="h5" sx={{ fontWeight: 900, mb: 2 }}>How it works</Typography>
+          <Grid container spacing={3}>
+            <Grid item xs={12} md={4}>
+              <Paper sx={{ p: 3, borderRadius: 3 }}>
+                <Stack spacing={1} alignItems="flex-start">
+                  <Avatar sx={{ bgcolor: 'primary.main' }}><LocalLaundryService /></Avatar>
+                  <Typography sx={{ fontWeight: 800 }}>1. Book a pickup</Typography>
+                  <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>Choose service, schedule pickup at your address.</Typography>
+                </Stack>
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12} md={4}>
+              <Paper sx={{ p: 3, borderRadius: 3 }}>
+                <Stack spacing={1} alignItems="flex-start">
+                  <Avatar sx={{ bgcolor: 'success.main' }}><DeliveryDining /></Avatar>
+                  <Typography sx={{ fontWeight: 800 }}>2. We collect & clean</Typography>
+                  <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>Professional cleaning and careful handling.</Typography>
+                </Stack>
+              </Paper>
+            </Grid>
+
+            <Grid item xs={12} md={4}>
+              <Paper sx={{ p: 3, borderRadius: 3 }}>
+                <Stack spacing={1} alignItems="flex-start">
+                  <Avatar sx={{ bgcolor: 'warning.main' }}><Favorite /></Avatar>
+                  <Typography sx={{ fontWeight: 800 }}>3. Delivery to you</Typography>
+                  <Typography sx={{ fontSize: 13, color: 'text.secondary' }}>Fresh, folded and returned at your doorstep.</Typography>
+                </Stack>
+              </Paper>
+            </Grid>
+          </Grid>
         </Box>
 
-        {/* Right side - Circular image */}
-        <Box sx={styles.rightImage}>
-          <Box sx={styles.heroCircle}>
-            <img
-              src="https://images.unsplash.com/photo-1567521464027-f127ff144326?w=400&h=400&fit=crop"
-              alt="Professional laundry service"
-              style={styles.heroImg}
-            />
-          </Box>
+        {/* Bottom CTA */}
+        <Box sx={{ mt: 6, textAlign: 'center' }}>
+          <Typography variant="h6" sx={{ fontWeight: 800 }}>Ready to simplify your laundry?</Typography>
+          <Typography sx={{ color: 'text.secondary', mt: 1 }}>Book a pickup in 2 minutes and let us take care of the rest.</Typography>
+          <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} justifyContent="center" sx={{ mt: 3 }}>
+            <Button variant="contained" size="large" onClick={() => navigate('/book')} sx={{ bgcolor: 'success.main', px: 4 }}>Book Pickup</Button>
+            <Button variant="outlined" size="large" onClick={() => navigate('/contact')}>Get Support</Button>
+          </Stack>
         </Box>
       </Container>
-
-      {/* Page counter */}
-      <Typography
-        sx={{
-          position: 'absolute',
-          bottom: 30,
-          right: 40,
-          color: 'rgba(255,255,255,0.7)',
-          fontSize: 18,
-          fontWeight: 600,
-        }}
-      >
-        Page 01
-      </Typography>
     </Box>
   );
 }

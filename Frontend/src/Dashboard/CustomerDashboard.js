@@ -46,7 +46,7 @@ export default function CustomerDashboard() {
 
             <Grid item xs={12} md={6}>
               <Box sx={{ textAlign: { xs: 'center', md: 'left' }, pl: { md: 6 } }}>
-                <Typography variant="subtitle2" sx={{ color: 'success.main', fontWeight: 700, mb: 1 }}>Laundry Presentation</Typography>
+                <Typography variant="subtitle2" sx={{ color: 'success.main', fontWeight: 700, mb: 1 }}>Laundry Pickup Delivery Management System</Typography>
                 <Typography variant="h3" sx={{ fontWeight: 900, lineHeight: 1.05, mb: 3 }}>
                   Laundry That
                   <br />

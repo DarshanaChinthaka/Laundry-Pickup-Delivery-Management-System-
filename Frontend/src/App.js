@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import { ThemeProvider, createTheme, CssBaseline, Box, AppBar, Toolbar, Typography, Container, Paper, useMediaQuery, Button } from '@mui/material';
+import { ThemeProvider, createTheme, CssBaseline, Box, Typography, Container, Paper, Button } from '@mui/material';
 import OrderForm from './pages/OrderForm';
 import OrderList from './pages/OrderList';
 import OrderDetails from './pages/OrderDetails';
@@ -15,12 +15,9 @@ import Contact from './pages/Contact';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import logoTopRight from './laundry-logo.png';
-import OrderForm from "./pages/OrderForm";
-import OrderList from "./pages/OrderList";
-import OrderDetails from "./pages/OrderDetails";
-import DriverOrders from "./pages/DriverOrders";
-import DriverOrderDetails from "./pages/DriverOrderDetails";
-import DriverProfile from "./pages/DriverProfile";
+import DriverOrders from './pages/DriverOrders';
+import DriverOrderDetails from './pages/DriverOrderDetails';
+import DriverProfile from './pages/DriverProfile';
 
 
 
@@ -43,12 +40,12 @@ const theme = createTheme({
 
 function AppContent() {
   const navigate = useNavigate();
-  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   const navItems = [
     { label: 'Home', path: '/' },
     { label: 'About', path: '/about' },
     { label: 'Our Service', path: '/service' },
+    { label: 'Driver', path: '/driver' },
     { label: 'Contact Us', path: '/contact' },
   ];
 
@@ -65,7 +62,7 @@ function AppContent() {
         borderBottom: '1px solid rgba(15,23,42,0.08)',
         bgcolor: 'white'
       }}>
-        <Box component="img" src={logoTopRight} alt="LaundryPro logo" sx={{ height: 80, width: 'auto' }} />
+        <Box component="img" src={logoTopRight} alt="LaundryPro logo" sx={{ height: 80, width: 'auto', cursor: 'pointer' }} onClick={() => navigate('/')} />
         <Box sx={{ display: 'flex', justifyContent: 'center', gap: 1, flex: 1, flexWrap: 'wrap' }}>
           {navItems.map((item) => (
             <Paper
@@ -137,9 +134,6 @@ function AppContent() {
               <Route path="/contact" element={<Contact />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<SignUp />} />
-              <Route path="/book" element={<OrderForm />} />
-              <Route path="/orders" element={<OrderList />} />
-              <Route path="/orders/:id" element={<OrderDetails />} />
               <Route path="/driver/orders/:id" element={<DriverOrderDetails />} />
               <Route path="/driver/profile" element={<DriverProfile />} />
               <Route path="/driver/orders" element={<DriverOrders />} />
@@ -179,4 +173,3 @@ function App() {
 }
 
 export default App;
-
