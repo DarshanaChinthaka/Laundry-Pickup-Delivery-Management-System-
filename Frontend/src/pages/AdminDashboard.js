@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ShoppingCart, Users, Truck, Droplet, Package, CreditCard, Menu, LayoutDashboard, Settings } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 export default function LaundryAdminDashboard() {
+  const navigate = useNavigate();
   const [now, setNow] = useState(new Date());
 
   useEffect(() => {
@@ -43,12 +45,29 @@ export default function LaundryAdminDashboard() {
   };
 
   const handleTileActivate = (tileId) => {
-    // placeholder: navigate or open modal in the real app
-    // Keep behavior limited to a console log so functionality isn't changed
-    // Developers can replace this with real navigation later
-    // eslint-disable-next-line no-console
-    console.log('Activate tile', tileId);
-    alert(`Open ${tileId}`);
+    // navigate to the admin subpages instead of alert
+    switch (tileId) {
+      case 'customers':
+        navigate('/admin/customers');
+        break;
+      case 'orders':
+        navigate('/admin/orders');
+        break;
+      case 'drivers':
+        navigate('/admin/drivers');
+        break;
+      case 'services':
+        navigate('/admin/services');
+        break;
+      case 'inventory':
+        navigate('/admin/services');
+        break;
+      case 'payments':
+        navigate('/admin/customers');
+        break;
+      default:
+        console.log('Activate tile', tileId);
+    }
   };
 
   const onKeyActivate = (e, id) => {

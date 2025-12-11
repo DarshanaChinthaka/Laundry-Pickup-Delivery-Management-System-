@@ -19,6 +19,10 @@ import DriverOrders from "./pages/DriverOrders";
 import DriverOrderDetails from "./pages/DriverOrderDetails";
 import DriverProfile from "./pages/DriverProfile";
 import EmployeesDashboard from './Dashboard/EmployeesDashboard';
+import ManageCustomers from './pages/admin/ManageCustomers';
+import ManageOrders from './pages/admin/ManageOrders';
+import ManageDrivers from './pages/admin/ManageDrivers';
+import LaundryServices from './pages/admin/LaundryServices';
 
 
 
@@ -130,6 +134,10 @@ function AppContent() {
               <Route path="/orders" element={<OrderList />} />
               <Route path="/orders/:id" element={<OrderDetails />} />
               <Route path="/admin" element={<AdminDashboard />} />
+              <Route path="/admin/customers" element={<ManageCustomers />} />
+              <Route path="/admin/orders" element={<ManageOrders />} />
+              <Route path="/admin/drivers" element={<ManageDrivers />} />
+              <Route path="/admin/services" element={<LaundryServices />} />
               <Route path="/driver" element={<DriverDashboard />} />
               <Route path="/about" element={<About />} />
               <Route path="/service" element={<Service />} />
